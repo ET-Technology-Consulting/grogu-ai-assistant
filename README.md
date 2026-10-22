@@ -21,8 +21,9 @@ Touch -> ESP32 (mic) -> Server: speech-to-text -> LLM + tools -> text-to-speech 
 | Folder | Content | Status |
 | --- | --- | --- |
 | [`arduino/motor`](arduino/motor) | First test: driving the original motor with an Arduino and an L293D | Available |
+| [`esp32`](esp32) | ESP32-S3 wiring diagram and bring-up firmware to test each module | Available |
 
-More folders will be added as the build progresses: ESP32 firmware, server, AI pipeline, and the control interface.
+More folders will be added as the build progresses: server, AI pipeline, and the control interface.
 
 ## Roadmap
 
