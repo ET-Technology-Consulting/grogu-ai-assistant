@@ -62,7 +62,23 @@ Power and passive connections:
 3. On the XIAO, set **USB CDC On Boot: Enabled** so the serial monitor works over its USB-C port. On the DevKitC-1, use the port labelled UART.
 4. Open `bringup/bringup.ino`, upload, then open the serial monitor at 115200 baud.
 
-Do not touch the head while the board boots: the touch sensor calibrates itself during the first second.
+From the command line, with [arduino-cli](https://arduino.github.io/arduino-cli/) and the same core (`brew install arduino-cli`), on the DevKitC-1 N16R8:
+
+```bash
+FQBN="esp32:esp32:esp32s3:FlashSize=16M,PSRAM=opi,PartitionScheme=app3M_fat9M_16MB"
+arduino-cli compile -b "$FQBN" esp32/bringup
+arduino-cli upload -b "$FQBN" -p /dev/cu.usbserial-XXXX esp32/bringup
+```
+
+`tools/grogu_serial.py` sends commands and prints the replies, so tests can be scripted instead of typed in a serial monitor:
+
+```bash
+python3 -m venv esp32/tools/.venv && esp32/tools/.venv/bin/pip install pyserial
+esp32/tools/.venv/bin/python esp32/tools/grogu_serial.py --reset   # boot log and help menu
+esp32/tools/.venv/bin/python esp32/tools/grogu_serial.py p g       # beep, then chirp
+```
+
+Do not touch the head while the board boots: the touch sensor calibrates itself during the first two seconds.
 
 ### Commands
 
