@@ -224,6 +224,10 @@ void recordAndPlay() {
 // ---------- Touch ----------
 
 void calibrateTouch() {
+  // The first read starts the touch sensor; readings right after are far too
+  // high until it settles, so discard it and wait before sampling.
+  touchRead(PIN_TOUCH);
+  delay(100);
   uint64_t sum = 0;
   for (int i = 0; i < 16; i++) {
     sum += touchRead(PIN_TOUCH);
