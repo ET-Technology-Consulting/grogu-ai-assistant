@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Grogu AI Assistant
 
 Turning an animatronic Grogu plush into a voice-controlled AI assistant, connected to real tools.
@@ -48,28 +47,3 @@ More folders will be added as the build progresses: ESP32 firmware, server, AI p
 ---
 
 Fan-made project. Not affiliated with, endorsed or sponsored by Disney or Lucasfilm.
-=======
-# TableAgent · plateforme interne (V1)
-
-Outil interne de l'équipe TableAgent : clients, onboarding restaurant par restaurant, support.
-
-- `frontend/` : application React
-- `backend/` : API Fastify et base PostgreSQL (schéma, migrations, données de départ)
-- `shared/` : types et règles communs au front et au back
-- `docs/` : specs (PRD, specs fonctionnelles, modèle de données, rôles, intégrations Google, maquettes, architecture)
-- `prototype/` : la maquette cliquable, qui fait foi pour les écrans et les libellés
-- `Dockerfile`, `deploy/compose.yaml` : la production en conteneurs Docker (voir [docs/DEPLOIEMENT.md](docs/DEPLOIEMENT.md)) ; `.github/workflows/` : la CI
-
-## Démarrer
-
-```bash
-nvm use && corepack enable && pnpm install
-docker compose up -d db
-pnpm db:migrate && pnpm db:seed
-pnpm dev        # http://localhost:5173
-```
-
-Aucun fichier `.env` n'est nécessaire en développement. Sans identifiants Google, la page de connexion propose de choisir une personne de l'équipe.
-
-Conventions, commandes et variables d'environnement : voir [CLAUDE.md](CLAUDE.md).
->>>>>>> 071245ea61483bc79917058053c17318900a2f1d
