@@ -102,6 +102,8 @@ void updateMotorAutoStop() {
 
 void writeSamples(const int16_t *samples, size_t count) {
   speaker.write((const uint8_t *)samples, count * sizeof(int16_t));
+  // Playback blocks the main loop, so keep the motor auto-stop running here.
+  updateMotorAutoStop();
 }
 
 // Plays a sine sweep from f0 to f1 Hz (f0 == f1 gives a plain tone).
@@ -199,6 +201,11 @@ void recordAndPlay() {
   if (!buf) {
     Serial.println("record: out of memory");
     return;
+  }
+  // Recording blocks the main loop for seconds, past the motor auto-stop.
+  if (motorDirection != 0) {
+    motorStop();
+    Serial.println("motor: stopped for recording");
   }
   // Drop stale samples buffered while the mic was idle.
   int16_t scratch[256];

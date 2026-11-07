@@ -90,7 +90,7 @@ Do not touch the head while the board boots: the touch sensor calibrates itself 
 | `g` | Grogu chirp |
 | `v` / `V` | Volume down / up (starts at 20 %) |
 | `m` | Toggle the microphone level meter |
-| `r` | Record 2 s, then play it back |
+| `r` | Record 2 s, then play it back (stops the motor first) |
 | `t` | Print the raw touch value and threshold |
 | `c` | Recalibrate the touch sensor |
 | `h` | Help |
