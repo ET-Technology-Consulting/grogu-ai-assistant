@@ -28,6 +28,10 @@ HELP_END = "this help"
 # The firmware waits 1.5 s, then calibrates touch before printing the help.
 BOOT_TIMEOUT = 5.0
 
+# Commands that block the firmware longer than the default --wait.
+# `r` records 2 s, then plays it back.
+MIN_WAIT = {"r": 5.0}
+
 
 def find_port():
     ports = [p for p in list_ports.comports() if p.vid in BRIDGE_VIDS]
@@ -106,7 +110,7 @@ def main():
         for command in args.commands:
             ser.reset_input_buffer()
             ser.write(command.encode())
-            read_for(ser, args.wait)
+            read_for(ser, max(args.wait, MIN_WAIT.get(command, 0)))
 
 
 if __name__ == "__main__":
